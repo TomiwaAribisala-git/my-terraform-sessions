@@ -10,7 +10,7 @@ resource "aws_vpc" "practice-vpc" {
 resource "aws_subnet" "practice-subnet-1" { 
     vpc_id = aws_vpc.practice-vpc.id
     cidr_block = var.subnet_cidr_block
-    availability_zone = "us-east-1a"
+    availability_zone = var.avail_zone
     tags = {
         Name = "practice-subnet-1"
     }
@@ -91,7 +91,7 @@ resource "aws_instance" "private-instance" {
 
     vpc_security_group_ids = [aws_security_group.private-sg.id] 
 
-    availability_zone = "us-east-1a"
+    availability_zone = var.avail_zone
 
     associate_public_ip_address = true
 
@@ -103,4 +103,3 @@ resource "aws_instance" "private-instance" {
         Name = "private-instance"
     }
 }
-
